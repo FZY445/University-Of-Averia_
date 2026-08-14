@@ -35,6 +35,72 @@
 .interactive-glow{--gx:50%;--gy:50%}.interactive-glow:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(180px circle at var(--gx) var(--gy),rgba(255,255,255,.24),transparent 62%);opacity:0;transition:opacity .25s ease}.interactive-glow:hover:after{opacity:1}
 @media (max-width:700px){.stat,.faculty,.rank,.lecturer,.news,.panel{box-shadow:0 16px 45px rgba(43,18,24,.13),inset 0 1px 0 rgba(255,255,255,.6)}.btn{min-height:46px}.modal{padding:12px}.modal-box{border-radius:26px}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}.btn .ripple{display:none}}
+
+/* V6.1.0 — playful liquid-glass enhancement */
+:root{
+ --ua-maroon:#5a1420; --ua-maroon-deep:#2a0b12; --ua-green:#123d2c; --ua-green-deep:#09271d;
+ --ua-gold:#d9b66f; --ua-gold-bright:#f2d895;
+}
+body{
+ background:
+ radial-gradient(900px 500px at 8% 12%,rgba(90,20,32,.34),transparent 62%),
+ radial-gradient(800px 520px at 92% 38%,rgba(18,61,44,.30),transparent 62%),
+ linear-gradient(145deg,var(--ua-maroon-deep),#351016 44%,var(--ua-green-deep));
+}
+.topbar{
+ background:linear-gradient(90deg,rgba(42,11,18,.88),rgba(18,61,44,.72),rgba(42,11,18,.86))!important;
+ backdrop-filter:blur(24px) saturate(155%);-webkit-backdrop-filter:blur(24px) saturate(155%);
+ border-bottom:1px solid rgba(242,216,149,.22)!important;
+}
+.panel,.stat,.faculty,.rank,.lecturer,.news,.money-card,.facility,.exam-card{
+ background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.055))!important;
+ border:1px solid rgba(242,216,149,.16)!important;
+ box-shadow:0 18px 60px rgba(7,4,8,.25),inset 0 1px 0 rgba(255,255,255,.18)!important;
+ backdrop-filter:blur(22px) saturate(145%);-webkit-backdrop-filter:blur(22px) saturate(145%);
+ transition:transform .42s cubic-bezier(.2,1.35,.3,1),box-shadow .35s ease,border-color .35s ease,background .35s ease;
+}
+.panel:hover,.stat:hover,.faculty:hover,.rank:hover,.lecturer:hover,.news:hover,.money-card:hover,.facility:hover{
+ border-color:rgba(242,216,149,.38)!important;
+ box-shadow:0 24px 75px rgba(7,4,8,.32),inset 0 1px 0 rgba(255,255,255,.26),0 0 0 1px rgba(18,61,44,.12)!important;
+}
+.btn{
+ position:relative;overflow:hidden;isolation:isolate;
+ transition:transform .32s cubic-bezier(.2,1.45,.3,1),box-shadow .3s ease,filter .3s ease!important;
+}
+.btn:hover{transform:translateY(-3px) scale(1.025)!important;filter:saturate(1.08);box-shadow:0 12px 34px rgba(0,0,0,.22)!important}
+.btn:active{transform:translateY(1px) scale(.96)!important}
+.btn::before{
+ content:"";position:absolute;inset:-2px;background:linear-gradient(120deg,transparent 25%,rgba(255,255,255,.42),transparent 70%);
+ transform:translateX(-120%);transition:transform .65s ease;z-index:-1;
+}
+.btn:hover::before{transform:translateX(120%)}
+.brand{transition:transform .45s cubic-bezier(.2,1.5,.3,1),filter .35s ease}
+.brand:hover{transform:translateY(-2px) scale(1.015);filter:drop-shadow(0 8px 18px rgba(217,182,111,.18))}
+.brand:active{transform:scale(.94) rotate(-1deg)}
+.brand img{transition:transform .55s cubic-bezier(.2,1.6,.3,1),filter .45s ease}
+.brand:hover img{transform:rotate(-5deg) scale(1.07)}
+.brand:active img{transform:rotate(10deg) scale(1.22)}
+.news-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px;position:relative;z-index:3}
+.news-action{
+ border:1px solid rgba(242,216,149,.18);background:rgba(255,255,255,.08);color:inherit;
+ border-radius:999px;padding:8px 11px;cursor:pointer;font:700 11px/1 inherit;
+ backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+ transition:transform .28s cubic-bezier(.2,1.45,.3,1),background .25s ease,border-color .25s ease;
+}
+.news-action:hover{transform:translateY(-2px) scale(1.045);background:rgba(217,182,111,.16);border-color:rgba(242,216,149,.42)}
+.news-action:active{transform:scale(.91)}
+.news-action.reacted{background:rgba(217,182,111,.2);border-color:rgba(242,216,149,.55);box-shadow:0 0 18px rgba(217,182,111,.12)}
+.interactive-news{cursor:pointer}
+.section.alt{background:linear-gradient(180deg,rgba(18,61,44,.16),rgba(90,20,32,.12))!important}
+.section:nth-of-type(odd){background:linear-gradient(180deg,rgba(90,20,32,.13),rgba(18,61,44,.10))}
+::selection{background:rgba(217,182,111,.92);color:#241015}
+::-moz-selection{background:rgba(217,182,111,.92);color:#241015}
+@media(max-width:700px){
+ .news-actions{gap:6px}
+ .news-action{padding:9px 10px}
+ .btn{box-shadow:0 8px 22px rgba(0,0,0,.16)!important}
+}
+
 </style>
 </head>
 <body>
@@ -71,8 +137,165 @@ function closeModal(){document.getElementById('modal').classList.remove('open');
 document.getElementById('closeModal').onclick=closeModal;document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')closeModal()};
 document.querySelectorAll('.detail-btn').forEach(btn=>btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();const kind=btn.dataset.kind;const details={mandiri:['Program Mandiri','Jalur Mandiri Averiá menyediakan pilihan Fast Track dan Non Fast Track dengan proses simulasi pendaftaran langsung.'],beasiswa:['Fully Funded Scholarship','Program beasiswa penuh simulasi mencakup tuition, academic support, dan fasilitas mahasiswa.']};openSimple(details[kind][0],details[kind][1],true)}));
 document.querySelectorAll('.facility').forEach(el=>el.onclick=()=>{document.getElementById('modalBox').className='modal-box lightbox';document.getElementById('modalBox').innerHTML=`<button class="close" id="closeModal">×</button><div class="modal-content"><span class="kicker">Facility Gallery</span><h3>${el.dataset.title}</h3><img src="${el.dataset.img}" alt="${el.dataset.title}"><p class="lead">University of Averiá · Manchester</p></div>`;document.getElementById('modal').classList.add('open');document.getElementById('closeModal').onclick=closeModal});
-const newsSeeds=[['Prestasi Mahasiswa','Diamanta Agatha Askha kembali memimpin Averiá Academic Index dengan nilai simulasi tertinggi.'],['Penelitian Terbaru','Laboratorium Averiá mengumumkan simulasi lintas disiplin untuk riset bahasa dan komputasi.'],['Pengumuman Akademik','Kalender akademik dan jalur registrasi KETAT AVERIÁ memasuki siklus pembaruan berikutnya.'],['Kegiatan Kampus','University Walk menjadi lokasi utama rangkaian kegiatan mahasiswa akhir pekan ini.'],['Seminar','Forum Averiá menghadirkan diskusi tentang masa depan pendidikan tinggi dan teknologi.'],['Kerja Sama Internasional','Program kolaborasi internasional baru dibuka untuk mahasiswa lintas fakultas.'],['Fasilitas Baru','Ruang belajar premium dan area riset bersama masuk tahap pengembangan simulasi.'],['Prestasi Dosen','Dosen Averiá mendapat pengakuan simulasi untuk kontribusi penelitian multidisipliner.']];
-const newsGrid=document.getElementById('newsGrid'); function renderNews(){newsGrid.innerHTML='';let arr=[...newsSeeds].sort(()=>Math.random()-.5).slice(0,6);arr.forEach((n,i)=>{const el=document.createElement('article');el.className='news';const d=new Date();el.innerHTML=`<span class="tag">${n[0]}</span><h3>${n[1]}</h3><p>Simulasi berita University of Averiá dengan detail yang dapat dibuka untuk membaca ringkasan lengkap.</p><time>${d.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'})} · update ${i+1}</time>`;el.onclick=()=>openSimple(n[0],n[1]+' Simulasi detail: berita ini merupakan bagian dari live news engine lokal UÁ.');newsGrid.appendChild(el)})}let newsNext=300;let newsTimer=null;function updateNewsTimer(){const el=document.getElementById('newsTimer');if(el){const m=String(Math.floor(newsNext/60)).padStart(2,'0'),s=String(newsNext%60).padStart(2,'0');el.textContent=`AUTO REFRESH · ${m}:${s}`}}function refreshNews(auto=false){renderNews();newsNext=300;updateNewsTimer();if(auto)toast('News otomatis diperbarui ✦')}renderNews();updateNewsTimer();document.getElementById('newNews').onclick=()=>{refreshNews(false);toast('News engine menghasilkan batch baru ✦')};clearInterval(newsTimer);newsTimer=setInterval(()=>{newsNext--;if(newsNext<=0)refreshNews(true);else updateNewsTimer()},1000);
+
+const newsSeeds=[
+ {id:'prestasi',cat:'Prestasi Mahasiswa',titles:[
+  'Averiá Academic Index memasuki pembaruan baru',
+  'Mahasiswa UÁ kembali mencatat capaian akademik tertinggi',
+  'Top performers UÁ memimpin siklus akademik terbaru'
+ ],bodies:[
+  'Papan peringkat akademik diperbarui dengan capaian mahasiswa terbaik dari berbagai fakultas.',
+  'Siklus evaluasi terbaru menyoroti konsistensi prestasi mahasiswa di berbagai rumpun ilmu.',
+  'Komunitas akademik UÁ merayakan capaian baru dari mahasiswa lintas fakultas.'
+ ]},
+ {id:'research',cat:'Penelitian Terbaru',titles:[
+  'Laboratorium UÁ membuka agenda riset lintas disiplin',
+  'Proyek riset baru mempertemukan sains, bahasa, dan komputasi',
+  'Averiá Research Office merilis agenda penelitian terbaru'
+ ],bodies:[
+  'Tim peneliti mengembangkan simulasi kolaboratif yang menghubungkan beberapa bidang akademik.',
+  'Kelompok riset membuka ruang kolaborasi baru bagi mahasiswa dan dosen lintas disiplin.',
+  'Agenda riset terbaru menempatkan inovasi dan kolaborasi sebagai fokus utama.'
+ ]},
+ {id:'academic',cat:'Pengumuman Akademik',titles:[
+  'Kalender akademik UÁ memasuki siklus pembaruan',
+  'Pembaruan registrasi akademik telah diterbitkan',
+  'Academic Office merilis pengumuman terbaru'
+ ],bodies:[
+  'Mahasiswa disarankan memeriksa jadwal akademik dan informasi registrasi terbaru.',
+  'Informasi administrasi dan agenda akademik diperbarui untuk periode berikutnya.',
+  'University Academic Office menyiapkan rangkaian layanan akademik untuk siklus baru.'
+ ]},
+ {id:'campus',cat:'Kegiatan Kampus',titles:[
+  'University Walk kembali menjadi pusat aktivitas mahasiswa',
+  'Averiá Campus memasuki pekan kegiatan mahasiswa',
+  'Rangkaian kegiatan kampus terbaru resmi dimulai'
+ ],bodies:[
+  'Area kampus dipenuhi agenda komunitas, kegiatan organisasi, dan aktivitas mahasiswa.',
+  'Sejumlah ruang publik UÁ menjadi titik pertemuan berbagai komunitas mahasiswa.',
+  'Kegiatan kampus menghadirkan agenda baru untuk komunitas akademik dan organisasi.'
+ ]},
+ {id:'seminar',cat:'Seminar & Konferensi',titles:[
+  'Forum Averiá membuka diskusi masa depan pendidikan tinggi',
+  'International Academic Forum memasuki agenda berikutnya',
+  'Seminar lintas fakultas UÁ menghadirkan perspektif baru'
+ ],bodies:[
+  'Akademisi dan mahasiswa berdiskusi mengenai pendidikan, teknologi, dan perkembangan masyarakat.',
+  'Forum mempertemukan berbagai perspektif dari lingkungan akademik UÁ.',
+  'Agenda seminar berikutnya membuka ruang dialog lintas fakultas dan bidang keahlian.'
+ ]},
+ {id:'international',cat:'Kerja Sama Internasional',titles:[
+  'Program kolaborasi internasional UÁ memasuki tahap baru',
+  'Averiá memperluas jaringan akademik internasional',
+  'Kemitraan akademik baru membuka peluang lintas negara'
+ ],bodies:[
+  'Program pertukaran dan kolaborasi akademik diperluas untuk komunitas mahasiswa dan dosen.',
+  'Jaringan kerja sama terbaru menghadirkan peluang pembelajaran dan penelitian bersama.',
+  'Kolaborasi lintas negara menjadi bagian dari agenda pengembangan akademik UÁ.'
+ ]},
+ {id:'facility',cat:'Fasilitas Baru',titles:[
+  'Ruang belajar dan riset UÁ mendapat pembaruan',
+  'Fasilitas kampus memasuki tahap peningkatan berikutnya',
+  'Averiá Facilities Office mengumumkan pembaruan area kampus'
+ ],bodies:[
+  'Sejumlah ruang belajar dan area kolaborasi mendapat penyempurnaan untuk kenyamanan mahasiswa.',
+  'Pengembangan fasilitas diarahkan untuk mendukung kegiatan belajar, riset, dan komunitas.',
+  'Pembaruan fasilitas menghadirkan pengalaman kampus yang lebih nyaman dan modern.'
+ ]},
+ {id:'lecturer',cat:'Prestasi Dosen',titles:[
+  'Dosen UÁ mendapat pengakuan atas kontribusi akademik',
+  'Averiá Faculty Excellence menyoroti capaian dosen',
+  'Kontribusi penelitian dosen UÁ kembali mendapat perhatian'
+ ],bodies:[
+  'Kontribusi akademik dari lingkungan dosen menjadi bagian dari sorotan berita terbaru.',
+  'Komunitas UÁ menyoroti karya dan kontribusi dosen pada bidang masing-masing.',
+  'Pencapaian dosen menjadi salah satu agenda utama dalam pembaruan akademik terbaru.'
+ ]},
+ {id:'admission',cat:'Penerimaan Mahasiswa Baru',titles:[
+  'PMB UÁ membuka siklus informasi berikutnya',
+  'Informasi KETAT AVERIÁ diperbarui',
+  'Penerimaan mahasiswa baru memasuki fase baru'
+ ],bodies:[
+  'Calon mahasiswa dapat memeriksa informasi jalur masuk dan layanan pendaftaran melalui portal UÁ.',
+  'Layanan PMB dan akses KETAT mendapatkan pembaruan informasi terbaru.',
+  'Informasi penerimaan mahasiswa baru disusun untuk membantu calon peserta mempersiapkan proses seleksi.'
+ ]},
+ {id:'scholarship',cat:'Beasiswa',titles:[
+  'Informasi Fully Funded Scholarship diperbarui',
+  'Averiá Scholarship Office merilis pengumuman baru',
+  'Program beasiswa UÁ memasuki siklus informasi berikutnya'
+ ],bodies:[
+  'Calon penerima dapat melihat informasi program, fasilitas, dan tahapan seleksi pada portal.',
+  'Pembaruan terbaru merangkum informasi mengenai dukungan pendidikan dan fasilitas mahasiswa.',
+  'Program beasiswa kembali menjadi bagian dari agenda informasi akademik UÁ.'
+ ]}
+];
+
+const newsGrid=document.getElementById('newsGrid');
+const reactionKey='ua_news_reactions_v610';
+function getReactions(){
+ try{return JSON.parse(localStorage.getItem(reactionKey)||'{}')}catch(e){return {}}
+}
+function saveReactions(x){try{localStorage.setItem(reactionKey,JSON.stringify(x))}catch(e){}}
+function newsId(seed,title){return seed.id+'-'+title.toLowerCase().replace(/[^a-z0-9]+/g,'-').slice(0,32)}
+function renderNews(){
+ newsGrid.innerHTML='';
+ const pool=[...newsSeeds].sort(()=>Math.random()-.5).slice(0,6);
+ const now=new Date();
+ const reactions=getReactions();
+ pool.forEach((n,i)=>{
+   const title=n.titles[Math.floor(Math.random()*n.titles.length)];
+   const body=n.bodies[Math.floor(Math.random()*n.bodies.length)];
+   const id=newsId(n,title);
+   if(!reactions[id]) reactions[id]={up:0,down:0,saved:false};
+   const el=document.createElement('article');
+   el.className='news interactive-news';
+   el.dataset.newsId=id;
+   el.innerHTML=`
+     <span class="tag">${n.cat}</span>
+     <h3>${title}</h3>
+     <p>${body}</p>
+     <time>${now.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'})} · UÁ Official News · update ${i+1}</time>
+     <div class="news-actions" aria-label="Reaksi berita">
+       <button class="news-action like" type="button" data-reaction="up" aria-label="Suka">👍 <b>${reactions[id].up}</b></button>
+       <button class="news-action dislike" type="button" data-reaction="down" aria-label="Tidak suka">👎 <b>${reactions[id].down}</b></button>
+       <button class="news-action save" type="button" data-reaction="save" aria-label="Simpan berita">${reactions[id].saved?'🔖':'🔖'} <b>${reactions[id].saved?'Tersimpan':'Simpan'}</b></button>
+       <button class="news-action read" type="button" data-reaction="read" aria-label="Baca berita">Baca ↗</button>
+     </div>`;
+   el.addEventListener('click',()=>openSimple(n.cat,title+' — '+body+' Berita ini merupakan bagian dari live news engine lokal UÁ.'));
+   el.querySelectorAll('.news-action').forEach(btn=>{
+     btn.addEventListener('click',ev=>{
+       ev.stopPropagation();
+       const type=btn.dataset.reaction;
+       if(type==='read'){openSimple(n.cat,title,body);return}
+       const r=getReactions();
+       if(!r[id]) r[id]={up:0,down:0,saved:false};
+       if(type==='up'){r[id].up++;btn.classList.add('reacted');}
+       if(type==='down'){r[id].down++;btn.classList.add('reacted');}
+       if(type==='save'){r[id].saved=!r[id].saved;btn.querySelector('b').textContent=r[id].saved?'Tersimpan':'Simpan';btn.classList.toggle('reacted',r[id].saved);}
+       saveReactions(r);
+       if(type==='up'||type==='down') btn.querySelector('b').textContent=String(r[id][type]);
+       btn.animate([{transform:'scale(1)'},{transform:'scale(1.18)'},{transform:'scale(1)'}],{duration:360,easing:'cubic-bezier(.2,1.4,.3,1)'});
+     });
+   });
+   newsGrid.appendChild(el);
+ });
+ saveReactions(reactions);
+}
+let newsNext=300,newsTimer=null;
+function updateNewsTimer(){
+ const el=document.getElementById('newsTimer');
+ if(el){const m=String(Math.floor(newsNext/60)).padStart(2,'0'),s=String(newsNext%60).padStart(2,'0');el.textContent=`AUTO REFRESH · ${m}:${s}`}
+}
+function refreshNews(auto=false){
+ renderNews();newsNext=300;updateNewsTimer();
+ if(auto) toast('News otomatis diperbarui ✦');
+}
+renderNews();updateNewsTimer();
+document.getElementById('newNews').onclick=()=>{refreshNews(false);toast('News engine menghasilkan berita baru ✦')};
+clearInterval(newsTimer);
+newsTimer=setInterval(()=>{newsNext--;if(newsNext<=0)refreshNews(true);else updateNewsTimer()},1000);
+
 function randomExam(){const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let s='';for(let i=0;i<6;i++)s+=chars[Math.floor(Math.random()*chars.length)];return `KETAT-26-${s}`};
 const rooms=['Ruang A-201','Ruang B-304','Gedung C Lt. 2','Auditorium Utama','Ruang D-118','Ruang E-402'];const times=['08.00 WIB','09.30 WIB','11.00 WIB','13.00 WIB','14.30 WIB','16.00 WIB'];function makeExam(name,fac,prodi){const n=randomExam(),room=rooms[Math.floor(Math.random()*rooms.length)],time=times[Math.floor(Math.random()*times.length)],date=new Date(Date.now()+1000*60*60*24*(20+Math.floor(Math.random()*40)));return {n,room,time,date:date.toLocaleDateString('id-ID',{day:'2-digit',month:'long',year:'numeric'}),name,fac,prodi}}
 let lastExam=null;document.getElementById('pmbForm').onsubmit=e=>{e.preventDefault();lastExam=makeExam(document.getElementById('nama').value,document.getElementById('fakultas').value,document.getElementById('prodi').value);document.getElementById('generatedExam').classList.add('show');document.getElementById('generatedExam').innerHTML=`<span class="pill">PENDAFTARAN BERHASIL</span><h3 style="font:700 28px Georgia,serif">${lastExam.n}</h3><p>${lastExam.name}<br>${lastExam.fac}<br>${lastExam.prodi}</p><button class="btn btn-gold" type="button" id="useExam">Gunakan nomor untuk kartu ujian</button>`;document.getElementById('useExam').onclick=()=>{document.getElementById('examInput').value=lastExam.n;document.getElementById('accessExam').click()};toast('Nomor KETAT berhasil dibuat ✦')};
@@ -122,4 +345,33 @@ setInterval(()=>{document.getElementById('rankUpdated').textContent='LIVE · '+n
     card.addEventListener('pointerleave',()=>{card.style.transform='';},{passive:true});
   });
 })();
+
+/* V6.1.0 playful interactions */
+(function(){
+ const brand=document.querySelector('.brand');
+ if(brand){
+   brand.setAttribute('role','button');
+   brand.setAttribute('aria-label','University of Averiá');
+   brand.addEventListener('click',function(e){
+     e.preventDefault();
+     this.animate([
+       {transform:'scale(1) rotate(0deg)'},
+       {transform:'scale(1.12) rotate(-3deg)'},
+       {transform:'scale(.96) rotate(3deg)'},
+       {transform:'scale(1.03) rotate(0deg)'},
+       {transform:'scale(1)'}
+     ],{duration:620,easing:'cubic-bezier(.2,1.5,.3,1)'});
+     const img=this.querySelector('img');
+     if(img) img.animate([{filter:'drop-shadow(0 0 0 rgba(242,216,149,0))'},{filter:'drop-shadow(0 0 22px rgba(242,216,149,.7))'},{filter:'drop-shadow(0 0 0 rgba(242,216,149,0))'}],{duration:650});
+     toast('✦ Veritas · Virtus · Victoria');
+     document.getElementById('top')?.scrollIntoView({behavior:'smooth'});
+   });
+ }
+ document.querySelectorAll('.btn,.news-action,.hamb,.pill').forEach(el=>{
+   el.addEventListener('pointerdown',()=>{
+     el.animate([{transform:'scale(1)'},{transform:'scale(.92)'},{transform:'scale(1.02)'},{transform:'scale(1)'}],{duration:330,easing:'cubic-bezier(.2,1.5,.3,1)'});
+   },{passive:true});
+ });
+})();
+
 </script></body></html>
