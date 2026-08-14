@@ -517,6 +517,48 @@ main{position:relative;z-index:1;overflow:visible}
 @media(max-width:520px){.facilityHero{min-height:360px;border-radius:24px}.facilityRail{display:flex;flex-direction:row;overflow-x:auto;padding:2px 1px 8px;scroll-snap-type:x mandatory}.facilityThumb{min-width:120px;min-height:84px;scroll-snap-align:start}.facilityThumb:hover,.facilityThumb.active{transform:translateY(-3px) scale(1.01)}.facilityMeta{gap:10px}.facilityModal{padding:10px}.facilityModalInner{width:100%;border-radius:22px}.facilityModalInner img{height:62vh}.facilityModalInfo{padding:15px}.facilityModalInfo h3{font-size:21px}.facilityClose{right:12px;top:10px}.facilityHeroText{right:60px}.facilityHero h3{font-size:30px}.facilityHero p{font-size:11px}}
 </style>
 
+
+<style id="v5-top3-lecturer-ui">
+/* V5.0.0 — rank preview + lecturer interaction polish */
+.academicTop{align-items:center}
+.academicActions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.lecturerPreviewShell{position:relative;overflow:hidden;max-height:0;opacity:0;transform:translateY(-12px) scale(.985);transition:max-height .65s cubic-bezier(.2,1.25,.3,1),opacity .35s ease,transform .55s cubic-bezier(.2,1.25,.3,1);}
+.lecturerPreviewShell.open{max-height:1800px;opacity:1;transform:none;margin-top:15px}
+.lecturerPreviewHint{display:flex;gap:12px;align-items:center;padding:13px 15px;margin-bottom:12px;border:1px solid rgba(216,182,109,.5);border-radius:18px;background:linear-gradient(135deg,rgba(255,250,242,.72),rgba(216,182,109,.10));backdrop-filter:blur(16px);}
+.lecturerPreviewHint>span{width:34px;height:34px;display:grid;place-items:center;border-radius:12px;background:var(--green);color:var(--gold2);box-shadow:0 6px 18px rgba(21,59,43,.18)}
+.lecturerPreviewHint b{display:block;color:var(--wine);font-size:13px}.lecturerPreviewHint small{display:block;margin-top:3px;font:9px/1.5 Arial;color:var(--muted)}
+#lecturerMore{margin-top:14px}
+#lecturerMore.open{max-height:10000px!important;overflow:visible!important}
+.rank{cursor:pointer}
+.rank:first-child{background:linear-gradient(90deg,rgba(216,182,109,.10),transparent)}
+.rank:nth-child(2){background:linear-gradient(90deg,rgba(205,214,220,.08),transparent)}
+.rank:nth-child(3){background:linear-gradient(90deg,rgba(181,116,76,.09),transparent)}
+.rankBadge{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:rgba(216,182,109,.12);border:1px solid rgba(216,182,109,.32);font-weight:900;color:var(--gold2);box-shadow:inset 0 0 18px rgba(216,182,109,.06)}
+.rankTopHint{display:inline-flex;align-items:center;gap:7px;margin-left:10px;padding:4px 8px;border-radius:999px;background:rgba(216,182,109,.12);color:var(--gold2);font:800 8px Arial;letter-spacing:.08em}
+.rankPreviewModal{position:fixed;inset:0;z-index:220;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(12,5,7,.82);backdrop-filter:blur(22px) saturate(125%);-webkit-backdrop-filter:blur(22px) saturate(125%);max-width:none!important;color:white}.rankPreviewModal.show{display:flex;animation:facilityFade .24s ease}.rankPreviewModal .rankPreviewStage{width:min(900px,96vw);max-height:92vh}.rankPreviewModal{overflow:auto}.rankPreviewModal.show .rankPreviewStage{animation:sheetPop .48s cubic-bezier(.2,1.45,.3,1) both}
+.rankPreviewStage{position:relative;min-height:520px;overflow:hidden;background:#190b0f;isolation:isolate}
+.rankPreviewBg{position:absolute;inset:-24px;width:calc(100% + 48px);height:calc(100% + 48px);object-fit:cover;filter:blur(28px) saturate(.75) brightness(.42);transform:scale(1.12);opacity:.72}
+.rankPreviewShade{position:absolute;inset:0;background:radial-gradient(circle at 30% 45%,rgba(216,182,109,.15),transparent 32%),linear-gradient(90deg,rgba(21,59,43,.76),rgba(55,13,19,.86) 58%,rgba(12,5,7,.94));z-index:1}
+.rankPreviewGlow{position:absolute;width:330px;height:330px;left:12%;top:14%;border-radius:50%;background:rgba(216,182,109,.12);filter:blur(65px);z-index:1;animation:rankGlow 5s ease-in-out infinite}
+.rankPreviewPerson{position:absolute;z-index:2;left:4%;bottom:0;width:min(47%,470px);height:96%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 20px 35px rgba(0,0,0,.48));animation:rankPersonIn .7s cubic-bezier(.2,1.35,.3,1) both}
+.rankPreviewInfo{position:absolute;z-index:3;right:5%;top:10%;width:48%;padding:22px 22px 24px;border:1px solid rgba(216,182,109,.35);border-radius:24px;background:rgba(20,8,11,.34);backdrop-filter:blur(18px);box-shadow:0 20px 60px rgba(0,0,0,.22);animation:rankInfoIn .65s .08s cubic-bezier(.2,1.3,.3,1) both}
+.rankPreviewInfo .chip{background:rgba(216,182,109,.16);color:var(--gold2);border:1px solid rgba(216,182,109,.35)}
+.rankPreviewInfo h2{margin:12px 0 6px;color:#fff!important;font-size:clamp(26px,4vw,42px)!important;line-height:1.02}
+.rankPreviewInfo p{font:11px/1.7 Arial;color:#eadfce;margin:0}
+.rankStats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:17px 0}.rankStat{padding:11px;border-radius:15px;background:rgba(255,250,242,.07);border:1px solid rgba(216,182,109,.25)}.rankStat b{display:block;color:var(--gold2);font-size:20px}.rankStat small{font:8px Arial;color:#cdbfa8}
+.rankQuote{margin:15px 0;padding:11px 13px;border-left:2px solid var(--gold);font:italic 11px/1.6 Georgia;color:#eee2d1}
+.rankModalClose{position:absolute;right:14px;top:14px;z-index:8;border:1px solid rgba(216,182,109,.5);background:rgba(20,8,10,.48);color:#fff;width:38px;height:38px;border-radius:50%;cursor:pointer;backdrop-filter:blur(12px)}
+.rankModalClose:hover{transform:rotate(90deg) scale(1.06)}
+.rankAchievement{display:flex;gap:8px;align-items:center;font:9px/1.5 Arial;color:#eadfce;margin-top:7px}.rankAchievement b{color:var(--gold2)}
+@keyframes rankPersonIn{from{opacity:0;transform:translateY(28px) scale(.95)}to{opacity:1;transform:none}}
+@keyframes rankInfoIn{from{opacity:0;transform:translateX(22px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes rankGlow{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(18px,-12px) scale(1.12)}}
+@media(max-width:700px){
+ .academicTop{align-items:flex-start;flex-direction:column}.academicActions{width:100%;justify-content:stretch}.academicActions .btn{flex:1}
+ .rankPreviewStage{min-height:650px}.rankPreviewPerson{left:4%;bottom:-2%;width:92%;height:60%;object-position:center bottom}.rankPreviewInfo{left:6%;right:6%;top:auto;bottom:5%;width:auto;padding:17px;background:rgba(20,8,11,.62)}.rankPreviewInfo h2{font-size:27px!important}.rankStats{margin:10px 0}.rankPreviewShade{background:linear-gradient(180deg,rgba(12,5,7,.10),rgba(12,5,7,.75) 48%,rgba(12,5,7,.96) 100%)}
+}
+@media(prefers-reduced-motion:reduce){.rankPreviewPerson,.rankPreviewInfo,.rankPreviewGlow{animation:none!important}}
+</style>
 </head>
 <body>
 <div class="topline">UÁ · OFFICIAL FICTIONAL UNIVERSITY PORTAL · MANCHESTER · EST. 7 SEPTEMBER 1924</div>
@@ -606,8 +648,8 @@ main{position:relative;z-index:1;overflow:visible}
 
 <section class="section" id="academic">
 <div class="sectionHead"><h2>Dosen & Akademik</h2><span>34.000 faculty lecturers</span></div>
-<div class="academicTop"><span class="chip">8 preview dari 34.000 dosen</span><button class="btn" onclick="document.getElementById('lecturerMore').classList.toggle('open')">Selengkapnya</button></div>
-<div class="lecturers" id="lecturerPreview"></div>
+<div class="academicTop"><span class="chip">34.000 dosen · preview dikunci</span><div class="academicActions"><button class="btn" id="lecturerToggle" type="button">Selengkapnya · 8 Dosen</button><button class="btn ghost" id="lecturerAllToggle" type="button" style="display:none">Daftar Akademik</button></div></div>
+<div class="lecturerPreviewShell" id="lecturerPreviewShell"><div class="lecturerPreviewHint"><span>✦</span><div><b>8 dosen unggulan tersedia</b><small>Tekan “Selengkapnya · 8 Dosen” untuk membuka preview.</small></div></div><div class="lecturers" id="lecturerPreview"></div></div>
 <div class="facultyGrid" id="lecturerMore"></div>
 </section>
 
@@ -666,6 +708,8 @@ main{position:relative;z-index:1;overflow:visible}
 
 <div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="modalBox"><button class="close" onclick="closeModal()">×</button><div id="modalContent"></div></div></div>
 
+
+<div class="rankPreviewModal" id="rankPreviewModal" aria-hidden="true"></div>
 <footer><div class="foot"><div><h3>University of Averiá</h3><p>UÁ Central Administration · Official Fictional University Portal · Manchester, Britania Raya.</p></div><div><h3>Explore</h3><ul><li><a href="#profile">Profil UÁ</a></li><li><a href="#academic">Academics</a></li><li><a href="#ranking">Ranking</a></li><li><a href="#admission">PMB</a></li></ul></div><div><h3>Identity</h3><ul><li>Knowledge</li><li>Character</li><li>Excellence</li></ul></div></div><p style="max-width:1100px;margin:25px auto 0;border-top:1px solid #d7b56b33;padding-top:13px;font:9px Arial;color:#a99270">FICTIONAL / IN-UNIVERSE. Semua data mahasiswa, dosen, program, biaya, statistik, dan peristiwa spesifik UÁ adalah bagian dari worldbuilding/simulasi.</p></footer>
 
 <script>
@@ -959,6 +1003,59 @@ setInterval(generateNews,5*60*1000 + Math.floor(Math.random()*15*60*1000));
   let sx=0;modal?.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});modal?.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>45)stepFacility(dx<0?1:-1)},{passive:true});
   const h=document.getElementById('facilityHero');let tx=0;h?.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});h?.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>45)setFacility(current+(dx<0?1:-1))},{passive:true});
   setFacility(0,false);
+})();
+</script>
+
+
+<script id="v5-top3-lecturer-js">
+(function(){
+  const top3=[
+    {name:'A.Ma.Diamanta Agatha Askha',faculty:'Faculty of Law',score:1000,ipk:10.0,img:'rank1-diamanta.jpg',bg:'64753.jpg',quote:'Disiplin bukan tentang tidak pernah gagal, tapi tentang selalu kembali dengan lebih baik.',ach:['Peringkat #1 Averiá Academic Index','Juara Debat Hukum Internasional','Penulis jurnal hukum UÁ']},
+    {name:'A.Pr. Kaine Leon',faculty:'Faculty of Literature',score:999.82,ipk:9.998,img:'rank2-kaine.png',bg:'64751.jpg',quote:'Kata-kata yang tepat dapat membuka pintu yang tidak terlihat.',ach:['Top Academic Performer — FBS','Averiá Literary Review','International Language Forum']},
+    {name:'Vladimir Kevlar',faculty:'Faculty of Medicine',score:998.32,ipk:9.983,img:'rank3-vladimir.png',bg:'64752.jpg',quote:'Masa depan diciptakan oleh mereka yang berani bereksperimen.',ach:['Engineering & Medicine Research','Averiá Innovation Challenge','Student Research Fellow']}
+  ];
+  const fullRows=[...top3,
+    {name:'Elise Montclair',faculty:'Faculty of Languages',score:997.74,ipk:9.977},
+    {name:'Rafael Ardent',faculty:'Faculty of Engineering',score:996.91,ipk:9.969},
+    {name:'Sofia Bellamy',faculty:'Faculty of Computing',score:995.63,ipk:9.956},
+    {name:'Nathan Aurelius',faculty:'Business School',score:994.88,ipk:9.949},
+    {name:'Clara Evermont',faculty:'Faculty of Architecture',score:993.42,ipk:9.934}
+  ];
+  const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  function renderV5Ranking(){
+    const el=document.getElementById('leaderboard'); if(!el)return;
+    el.innerHTML=fullRows.map((x,i)=>`<div class="rank" data-rank-index="${i}" role="button" tabindex="0" aria-label="Buka preview ${esc(x.name)}">
+      <div class="rankBadge">${i+1}</div><div class="rankname"><b>${esc(x.name)}${i<3?'<span class="rankTopHint">TOP 3 · TAP</span>':''}</b><span>${esc(x.faculty)}</span></div>
+      <div class="score"><b>${x.score.toFixed(2)}/1000</b><small>Nilai</small></div><div class="score"><b>${x.ipk.toFixed(3)}</b><small>IPK</small></div>
+    </div>`).join('');
+    el.querySelectorAll('.rank').forEach((row,i)=>{row.onclick=()=>window.openV5Rank(i);row.onkeydown=e=>{if(e.key==='Enter'||e.key===' ')window.openV5Rank(i)}});
+  }
+  function openV5Rank(i){
+    const x=fullRows[i];
+    if(i>2){
+      const modal=document.getElementById('modal'); const c=document.getElementById('modalContent');
+      c.innerHTML=`<span class="chip">RANK #${i+1}</span><h2 style="color:var(--wine);font-size:30px;margin:12px 0">${esc(x.name)}</h2><p style="font:11px/1.8 Arial;color:var(--muted)">${esc(x.faculty)}<br><strong style="color:var(--wine)">${x.score.toFixed(2)}/1000</strong> · IPK <strong style="color:var(--wine)">${x.ipk.toFixed(3)}</strong></p>`;
+      modal.classList.add('show'); return;
+    }
+    const modal=document.getElementById('rankPreviewModal');
+    modal.innerHTML=`<div class="rankPreviewStage"><img class="rankPreviewBg" src="${x.bg}" alt=""><div class="rankPreviewShade"></div><div class="rankPreviewGlow"></div><button class="rankModalClose" type="button" aria-label="Tutup">×</button><img class="rankPreviewPerson" src="${x.img}" alt="Preview ${esc(x.name)}"><div class="rankPreviewInfo"><span class="chip">RANK #${i+1} · UÁ ACADEMIC INDEX</span><h2>${esc(x.name)}</h2><p>${esc(x.faculty)}</p><div class="rankStats"><div class="rankStat"><b>${x.score.toFixed(2)}</b><small>NILAI / 1000</small></div><div class="rankStat"><b>${x.ipk.toFixed(3)}</b><small>IPK / 10.0</small></div></div><div class="rankQuote">“${esc(x.quote)}”</div>${x.ach.map(a=>`<div class="rankAchievement"><b>✦</b>${esc(a)}</div>`).join('')}</div></div>`;
+    modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+    modal.querySelector('.rankModalClose').onclick=closeV5Rank;
+    modal.onclick=e=>{if(e.target===modal)closeV5Rank()};
+  }
+  function closeV5Rank(){const m=document.getElementById('rankPreviewModal');if(m){m.classList.remove('show');m.setAttribute('aria-hidden','true');document.body.style.overflow=''}}
+  window.openV5Rank=openV5Rank; window.closeV5Rank=closeV5Rank;
+  const oldRender=window.renderRanking; window.renderRanking=renderV5Ranking;
+  renderV5Ranking();
+  // Lecturer: the preview is genuinely hidden until the button is pressed.
+  const shell=document.getElementById('lecturerPreviewShell'), toggle=document.getElementById('lecturerToggle'), allToggle=document.getElementById('lecturerAllToggle'), more=document.getElementById('lecturerMore');
+  if(shell&&toggle){
+    toggle.addEventListener('click',()=>{const open=shell.classList.toggle('open');toggle.textContent=open?'Tutup 8 Preview':'Selengkapnya · 8 Dosen';if(allToggle)allToggle.style.display=open?'inline-flex':'none';if(open)shell.scrollIntoView({behavior:'smooth',block:'nearest'})});
+  }
+  if(allToggle&&more){allToggle.addEventListener('click',()=>{const open=more.classList.toggle('open');allToggle.textContent=open?'Tutup Daftar Akademik':'Daftar Akademik';if(open)more.scrollIntoView({behavior:'smooth',block:'nearest'})})}
+  // Make sure the eight cards are interactive even after the existing mutation observer runs.
+  document.querySelectorAll('#lecturerPreview .lecturer').forEach((el,i)=>{el.onclick=()=>window.openLecturer(i)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeV5Rank()});
 })();
 </script>
 
