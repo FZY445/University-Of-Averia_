@@ -497,6 +497,26 @@ main{position:relative;z-index:1;overflow:visible}
 }
 </style>
 
+
+<style id="ua-facility-gallery">
+.facilityShowcase{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(180px,.55fr);gap:14px;align-items:stretch}
+.facilityHero{min-height:520px;position:relative;overflow:hidden;border-radius:30px;border:1px solid rgba(216,182,109,.55);background:#251014;box-shadow:0 24px 65px rgba(54,16,20,.18);cursor:zoom-in;isolation:isolate}
+.facilityHero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,1.1,.25,1),filter .5s ease}
+.facilityHero:hover img{transform:scale(1.045);filter:saturate(1.06) contrast(1.02)}
+.facilityShade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,8,10,.04) 20%,rgba(22,8,10,.12) 40%,rgba(22,8,10,.88) 100%);pointer-events:none}
+.facilityHeroText{position:absolute;left:28px;right:80px;bottom:26px;color:#fff;z-index:2;text-align:left}
+.facilityKicker{font:800 9px Arial;letter-spacing:.18em;color:#f1d99b}.facilityHero h3{font-size:clamp(28px,4vw,52px);line-height:1;margin:9px 0 8px}.facilityHero p{margin:0;max-width:640px;font:13px/1.6 Arial;color:#f3eadb}
+.facilityExpand{position:absolute;right:20px;bottom:22px;z-index:3;width:46px;height:46px;border-radius:16px;border:1px solid rgba(216,182,109,.65);background:rgba(20,8,10,.45);backdrop-filter:blur(12px);color:#f1d99b;font-size:23px;cursor:pointer}
+.facilityRail{display:flex;flex-direction:column;gap:10px}.facilityThumb{position:relative;min-height:122px;border:1px solid #dfcda7;border-radius:21px;overflow:hidden;padding:0;background:#251014;cursor:pointer;box-shadow:0 10px 28px rgba(54,16,20,.08);transition:.35s cubic-bezier(.2,1.4,.3,1)}
+.facilityThumb img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;opacity:.62;transition:.35s}.facilityThumb:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(20,8,10,.78))}.facilityThumb span{position:absolute;left:13px;bottom:12px;z-index:2;color:#fff;font:800 8px Arial;letter-spacing:.12em;text-align:left}.facilityThumb:hover,.facilityThumb.active{transform:translateX(-4px) scale(1.015);border-color:#d8b66d;box-shadow:0 14px 34px rgba(54,16,20,.18)}.facilityThumb.active img{opacity:.9;transform:scale(1.05)}
+.facilityMeta{grid-column:1/-1;display:flex;align-items:center;gap:20px;padding:7px 4px 0;color:#786858;font:9px Arial;letter-spacing:.08em;text-transform:uppercase}.facilityMeta b{color:#3b1015}.facilityDots{margin-left:auto;display:flex;gap:6px}.facilityDots i{display:block;width:6px;height:6px;border-radius:50%;background:#d8c7a5;transition:.3s}.facilityDots i.on{width:22px;border-radius:99px;background:#d8b66d}
+.facilityGridAlt{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:13px}.facilityMini{border:1px solid #dfcda7;border-radius:22px;overflow:hidden;background:#fffaf2;padding:0;text-align:left;cursor:pointer;box-shadow:0 12px 30px rgba(54,16,20,.07);transition:.35s cubic-bezier(.2,1.4,.3,1)}.facilityMini:hover{transform:translateY(-7px) scale(1.012);box-shadow:0 22px 45px rgba(54,16,20,.14);border-color:#d8b66d}.facilityMini img{display:block;width:100%;height:170px;object-fit:cover;transition:.5s}.facilityMini:hover img{transform:scale(1.04)}.facilityMini span{display:block;padding:14px 16px}.facilityMini b{display:block;color:#3b1015;font-size:18px}.facilityMini small{display:block;color:#786858;font:10px Arial;margin-top:4px}
+.facilityModal{position:fixed;inset:0;z-index:160;background:rgba(12,5,7,.88);backdrop-filter:blur(22px) saturate(130%);display:none;align-items:center;justify-content:center;padding:22px}.facilityModal.show{display:flex;animation:facilityFade .25s ease}.facilityModalInner{width:min(1080px,92vw);max-height:90vh;position:relative;display:grid;grid-template-rows:minmax(0,1fr) auto;overflow:hidden;border:1px solid rgba(216,182,109,.55);border-radius:28px;background:rgba(35,12,16,.72);box-shadow:0 35px 110px #0008}.facilityModalInner img{width:100%;height:min(70vh,720px);object-fit:contain;background:#10090b}.facilityModalInfo{padding:18px 22px 21px;color:#fff;background:linear-gradient(180deg,rgba(21,59,43,.55),rgba(54,16,20,.85))}.facilityModalInfo span{font:800 8px Arial;letter-spacing:.18em;color:#f1d99b}.facilityModalInfo h3{margin:6px 0 4px;font-size:25px}.facilityModalInfo p{margin:0;color:#e9dfcf;font:11px/1.6 Arial}.facilityClose,.facilityArrow{position:fixed;z-index:3;border:1px solid rgba(216,182,109,.6);background:rgba(20,8,10,.68);backdrop-filter:blur(14px);color:#f1d99b;cursor:pointer}.facilityClose{right:20px;top:18px;width:46px;height:46px;border-radius:50%;font-size:29px}.facilityArrow{top:50%;transform:translateY(-50%);width:48px;height:64px;border-radius:18px;font-size:42px;line-height:1}.facilityArrow.left{left:18px}.facilityArrow.right{right:18px}.facilityClose:hover,.facilityArrow:hover{background:rgba(216,182,109,.18);transform:translateY(-50%) scale(1.06)}.facilityClose:hover{transform:scale(1.06)}
+@keyframes facilityFade{from{opacity:0}to{opacity:1}}
+@media(max-width:800px){.facilityShowcase{grid-template-columns:1fr}.facilityHero{min-height:410px}.facilityRail{display:grid;grid-template-columns:repeat(4,1fr)}.facilityThumb{min-height:82px}.facilityThumb span{font-size:7px}.facilityGridAlt{grid-template-columns:1fr}.facilityMini img{height:210px}.facilityArrow{width:42px;height:54px}.facilityArrow.left{left:8px}.facilityArrow.right{right:8px}.facilityHeroText{left:20px;bottom:20px}}
+@media(max-width:520px){.facilityHero{min-height:360px;border-radius:24px}.facilityRail{display:flex;flex-direction:row;overflow-x:auto;padding:2px 1px 8px;scroll-snap-type:x mandatory}.facilityThumb{min-width:120px;min-height:84px;scroll-snap-align:start}.facilityThumb:hover,.facilityThumb.active{transform:translateY(-3px) scale(1.01)}.facilityMeta{gap:10px}.facilityModal{padding:10px}.facilityModalInner{width:100%;border-radius:22px}.facilityModalInner img{height:62vh}.facilityModalInfo{padding:15px}.facilityModalInfo h3{font-size:21px}.facilityClose{right:12px;top:10px}.facilityHeroText{right:60px}.facilityHero h3{font-size:30px}.facilityHero p{font-size:11px}}
+</style>
+
 </head>
 <body>
 <div class="topline">UÁ · OFFICIAL FICTIONAL UNIVERSITY PORTAL · MANCHESTER · EST. 7 SEPTEMBER 1924</div>
@@ -543,15 +563,44 @@ main{position:relative;z-index:1;overflow:visible}
 
 <section class="section" id="facilities">
 <div class="sectionHead"><h2>Fasilitas University of Averiá</h2><span>Campus architecture & life</span></div>
-<div class="gallery">
-<div class="photo main"><div class="photoText"><b>Grand Averiá Hall</b><span>Gedung utama kampus · Manchester</span></div></div>
-<div class="photo"><div class="photoText"><b>Faculty Quarter</b><span>Gedung fakultas</span></div></div>
-<div class="photo"><div class="photoText"><b>Royal Library</b><span>Perpustakaan utama</span></div></div>
-<div class="photo"><div class="photoText"><b>Research Laboratory</b><span>Laboratorium riset</span></div></div>
-<div class="photo"><div class="photoText"><b>Grand Auditorium</b><span>Auditorium</span></div></div>
-<div class="photo"><div class="photoText"><b>Averiá Athletics</b><span>Fasilitas olahraga</span></div></div>
-<div class="photo"><div class="photoText"><b>Student Residence</b><span>Asrama mahasiswa</span></div></div>
-<div class="photo"><div class="photoText"><b>Royal Green Garden</b><span>Area kampus</span></div></div>
+<div class="facilityShowcase">
+  <div class="facilityHero" id="facilityHero" tabindex="0" role="button" aria-label="Buka foto gedung utama">
+    <img id="facilityHeroImg" src="facility-main.jpg" alt="Gedung utama University of Averiá" loading="lazy">
+    <div class="facilityShade"></div>
+    <div class="facilityHeroText">
+      <span class="facilityKicker" id="facilityKicker">01 · CAMPUS QUADRANGLE</span>
+      <h3 id="facilityTitle">Averiá Main Quadrangle</h3>
+      <p id="facilityCaption">Gedung utama bergaya Gothic-royal yang menjadi ikon kawasan kampus.</p>
+    </div>
+    <button class="facilityExpand" type="button" aria-label="Buka foto fullscreen" onclick="openFacilityGallery(0)">↗</button>
+  </div>
+  <div class="facilityRail" id="facilityRail">
+    <button class="facilityThumb active" type="button" data-facility="0"><img src="facility-main.jpg" alt="Gedung utama" loading="lazy"><span>MAIN QUADRANGLE</span></button>
+    <button class="facilityThumb" type="button" data-facility="1"><img src="facility-walk.jpg" alt="Jalur taman kampus" loading="lazy"><span>CAMPUS WALK</span></button>
+    <button class="facilityThumb" type="button" data-facility="2"><img src="facility-dining.jpg" alt="Area sosial dan kuliner" loading="lazy"><span>STUDENT COMMONS</span></button>
+    <button class="facilityThumb" type="button" data-facility="3"><img src="facility-library.jpg" alt="Perpustakaan utama" loading="lazy"><span>GRAND LIBRARY</span></button>
+  </div>
+  <div class="facilityMeta">
+    <span><b>04</b> curated locations</span>
+    <span>Swipe / tap to explore</span>
+    <div class="facilityDots" id="facilityDots"><i class="on"></i><i></i><i></i><i></i></div>
+  </div>
+</div>
+
+<div class="facilityGridAlt">
+  <button class="facilityMini" type="button" onclick="openFacilityGallery(1)"><img src="facility-walk.jpg" alt="Campus Walk" loading="lazy"><span><b>Campus Walk</b><small>Garden promenade · campus life</small></span></button>
+  <button class="facilityMini" type="button" onclick="openFacilityGallery(2)"><img src="facility-dining.jpg" alt="Student Commons" loading="lazy"><span><b>Student Commons</b><small>Social & dining quarter</small></span></button>
+  <button class="facilityMini" type="button" onclick="openFacilityGallery(3)"><img src="facility-library.jpg" alt="Grand Library" loading="lazy"><span><b>Grand Library</b><small>Research & study collections</small></span></button>
+</div>
+
+<div class="facilityModal" id="facilityModal" aria-hidden="true">
+  <button class="facilityClose" type="button" onclick="closeFacilityGallery()" aria-label="Tutup">×</button>
+  <button class="facilityArrow left" type="button" onclick="stepFacility(-1)" aria-label="Foto sebelumnya">‹</button>
+  <div class="facilityModalInner">
+    <img id="facilityModalImg" src="facility-main.jpg" alt="">
+    <div class="facilityModalInfo"><span id="facilityModalKicker"></span><h3 id="facilityModalTitle"></h3><p id="facilityModalCaption"></p></div>
+  </div>
+  <button class="facilityArrow right" type="button" onclick="stepFacility(1)" aria-label="Foto berikutnya">›</button>
 </div>
 </section>
 
@@ -884,6 +933,32 @@ setInterval(generateNews,5*60*1000 + Math.floor(Math.random()*15*60*1000));
       setTimeout(()=>el.classList.remove("ua-number-pop"),300);
     });
   },7000);
+})();
+</script>
+
+
+<script id="ua-facility-gallery-js">
+(function(){
+  const items=[
+    {img:'facility-main.jpg',kicker:'01 · CAMPUS QUADRANGLE',title:'Averiá Main Quadrangle',caption:'Gedung utama bergaya Gothic-royal yang menjadi ikon kawasan kampus.'},
+    {img:'facility-walk.jpg',kicker:'02 · CAMPUS LIFE',title:'Averiá Campus Walk',caption:'Jalur taman rindang dengan promenade batu, bangku, lampu klasik, dan ruang santai mahasiswa.'},
+    {img:'facility-dining.jpg',kicker:'03 · STUDENT COMMONS',title:'Averiá Student Commons',caption:'Ruang sosial dan kuliner bernuansa klasik untuk bertemu, makan, dan beristirahat di sela aktivitas.'},
+    {img:'facility-library.jpg',kicker:'04 · KNOWLEDGE QUARTER',title:'Averiá Grand Library',caption:'Perpustakaan megah dengan koleksi bertingkat, ruang baca, dan atmosfer akademik yang hangat.'}
+  ];
+  let current=0;
+  const heroImg=document.getElementById('facilityHeroImg'),title=document.getElementById('facilityTitle'),cap=document.getElementById('facilityCaption'),kick=document.getElementById('facilityKicker');
+  const modal=document.getElementById('facilityModal'),mImg=document.getElementById('facilityModalImg'),mTitle=document.getElementById('facilityModalTitle'),mCap=document.getElementById('facilityModalCaption'),mKick=document.getElementById('facilityModalKicker');
+  function setFacility(i,animate=true){current=(i+items.length)%items.length;const x=items[current]; if(animate){heroImg.classList.add('facilitySwap');setTimeout(()=>heroImg.classList.remove('facilitySwap'),420)} heroImg.src=x.img;heroImg.alt=x.title;title.textContent=x.title;cap.textContent=x.caption;kick.textContent=x.kicker;document.querySelectorAll('.facilityThumb').forEach((b,n)=>b.classList.toggle('active',n===current));document.querySelectorAll('#facilityDots i').forEach((d,n)=>d.classList.toggle('on',n===current));}
+  window.openFacilityGallery=function(i){setFacility(i,false);mImg.src=items[current].img;mImg.alt=items[current].title;mTitle.textContent=items[current].title;mCap.textContent=items[current].caption;mKick.textContent=items[current].kicker;modal.classList.add('show');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'};
+  window.closeFacilityGallery=function(){modal.classList.remove('show');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''};
+  window.stepFacility=function(dir){setFacility(current+dir);const x=items[current];mImg.src=x.img;mImg.alt=x.title;mTitle.textContent=x.title;mCap.textContent=x.caption;mKick.textContent=x.kicker};
+  document.querySelectorAll('.facilityThumb').forEach(btn=>btn.addEventListener('click',()=>{const i=Number(btn.dataset.facility);setFacility(i);btn.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}));
+  document.getElementById('facilityHero')?.addEventListener('click',e=>{if(!e.target.closest('button'))openFacilityGallery(current)});
+  document.addEventListener('keydown',e=>{if(!modal.classList.contains('show'))return;if(e.key==='Escape')closeFacilityGallery();if(e.key==='ArrowRight')stepFacility(1);if(e.key==='ArrowLeft')stepFacility(-1)});
+  modal?.addEventListener('click',e=>{if(e.target===modal)closeFacilityGallery()});
+  let sx=0;modal?.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});modal?.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>45)stepFacility(dx<0?1:-1)},{passive:true});
+  const h=document.getElementById('facilityHero');let tx=0;h?.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});h?.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>45)setFacility(current+(dx<0?1:-1))},{passive:true});
+  setFacility(0,false);
 })();
 </script>
 
